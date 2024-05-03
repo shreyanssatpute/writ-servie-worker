@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Generator Widget</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    
+ .t {
+  text-align: center;
+  color: white;
+}
+
+.r {
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+}
+
+* {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.widget-title {
+  font-size: 44px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  position: fixed;
+  top: 7%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+
+.widget-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.widget-input {
+  width: calc(100% - 25px); /* Subtract the desired margins from the available width */
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: none;
+}
+.download{
+ padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="widget-container">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">&#8801;</button> <!-- Sidebar toggle button -->
+    <div class="widget-sidebar" id="sidebar">
+     
+      <br>
+      <h2 class="t">History</h2>
+      <div class="history-container">
+        <ul class="history-list" id="history-list"></ul>
+      </div>
+      <button onclick="clearHistory()" class="clear-history-button">Clear History</button> 
+      <!-- Clear History button -->
+      <br>
+      <p class="r">Visit our other sites as well :</p>
+      <button class="site" onclick="redirectToURL('https://shreyanssatpute.neocities.org/TaskIt/')">TaskIt</button>
+      <button class="site" onclick="redirectToURL('https://shreyanssatpute.neocities.org/weather/')">WeatherIt</button>
+      <button class="site" onclick="redirectToURL('https://shreyanssatpute.neocities.org/budget_tracker/')">Budget Tracker</button>
+    </div>
+  
+      <div class="widget-title">QR -It</div>
+     <div class="container">
+      <div class="w">
+        <input type="text" id="qr-text" class="widget-input" placeholder="Enter text or URL">
+        
+        <div id="qr-code" class="widget-qr-code">
+          <div id="qr-code-widget" class="qr-code-widget"></div>
+          
+        </div>
+        <br>
+        <br>
+ 
+        <button onclick="generateQRCode()" class="widget-button">Generate QR Code</button>
+        <br>
+        <br>
+        <button onclick="downloadQRCode()" class="download">Download</button>
+      </div>
+    </div> 
+    
+      
+      
+   
+  </div>
+
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+          console.log('Service Worker registered with scope:', registration.scope);
+        }, function(err) {
+          console.log('Service Worker registration failed:', err);
+        });
+      });
+    }
+  </script>
+  
+  
+  
+  
+</body>
+</html>
